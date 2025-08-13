@@ -1,34 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useAuth } from './context/AuthContext'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
+import EventDetail from './pages/EventDetail'
+import Favorites from './pages/Favorites'
+import Profile from './pages/Profile'
+import Settings from './pages/Settings'
+import NotFound from './pages/NotFound'
+
+// Componente para proteger rotas
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated, isLoading } = useAuth();
+  
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-orange-200 border-t-orange-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p>Carregando...</p>
+        </div>
+      </div>
+    );
+  }
+  
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
+
+// Componente para redirecionar usuários logados
+const PublicRoute = ({ children }) => {
+  const { isAuthenticated, isLoading } = useAuth();
+  
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-orange-200 border-t-orange-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p>Carregando...</p>
+        </div>
+      </div>
+    );
+  }
+  
+  return isAuthenticated ? <Navigate to="/dashboard" /> : children;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Routes>
+      {/* Rotas públicas */}
+      <Route path="/" element={<PublicRoute><Home /></PublicRoute>} />
+      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+      <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+      
+      {/* Rotas protegidas */}
+      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/event-detail" element={<ProtectedRoute><EventDetail /></ProtectedRoute>} />
+      <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
+      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+      <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+      
+      {/* Página 404 */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   )
 }
 
