@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Moon, Sun, Edit, Trash2, LogOut, Eye, EyeOff } from 'lucide-react';
+import { Moon, Sun, Edit, Trash2, LogOut, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
-import Navbar from '../components/Navbar';
 import Modal from '../components/Modal';
 
 const Settings = () => {
@@ -35,7 +34,6 @@ const Settings = () => {
       alert('Por favor, digite sua senha para confirmar');
       return;
     }
-    // Simular verificação de senha
     logout();
     navigate('/');
   };
@@ -51,96 +49,114 @@ const Settings = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ paddingTop: '80px' }}>
-      <Navbar />
+    <div className="min-h-screen">
+      <button 
+        onClick={() => navigate(-1)}
+        className="fixed top-6 left-6 w-12 h-12 rounded-full flex items-center justify-center text-white transition-all hover:scale-110 z-50"
+        style={{ backgroundColor: '#936253' }}
+      >
+        <ArrowLeft size={20} />
+      </button>
       
-      <div className="container mx-auto p-6 max-w-4xl">
-        <div className="card fade-in">
-          <h1 className="text-3xl font-bold mb-8">Configurações</h1>
+      <div className="container mx-auto p-6 max-w-4xl" style={{ paddingTop: '5rem' }}>
+        <div className="card fade-in" style={{ maxWidth: 'none' }}>
+          <h1 className="text-3xl font-bold mb-8" style={{ color: '#38241D' }}>Configurações</h1>
 
-          {/* Theme Toggle */}
           <div className="space-y-6">
-            <div className="flex items-center justify-between p-4 border rounded-lg">
+            <div 
+              className="flex items-center justify-between p-4 border rounded-lg transition-all hover:shadow-md hover:scale-105"
+              style={{ borderColor: 'rgba(147, 98, 83, 0.3)' }}
+            >
               <div className="flex items-center gap-4">
-                {theme === 'dark' ? <Moon size={24} /> : <Sun size={24} />}
+                {theme === 'dark' ? <Moon size={24} style={{ color: '#936253' }} /> : <Sun size={24} style={{ color: '#936253' }} />}
                 <div>
-                  <h3 className="font-semibold">Tema</h3>
-                  <p className="text-sm text-gray-600">
+                  <h3 className="font-semibold" style={{ color: '#38241D' }}>Tema</h3>
+                  <p className="text-sm" style={{ color: '#946354' }}>
                     {theme === 'dark' ? 'Modo escuro ativado' : 'Modo claro ativado'}
                   </p>
                 </div>
               </div>
-              <button
-                onClick={toggleTheme}
-                className="btn btn-outline"
+              <button 
+                onClick={toggleTheme} 
+                className="btn btn-outline transition-all hover:scale-105"
+                style={{ borderColor: '#936253', color: '#936253' }}
               >
                 Alternar
               </button>
             </div>
 
-            {/* Edit Profile */}
-            <div className="flex items-center justify-between p-4 border rounded-lg">
+            <div 
+              className="flex items-center justify-between p-4 border rounded-lg transition-all hover:shadow-md hover:scale-105"
+              style={{ borderColor: 'rgba(147, 98, 83, 0.3)' }}
+            >
               <div className="flex items-center gap-4">
-                <Edit size={24} />
+                <Edit size={24} style={{ color: '#936253' }} />
                 <div>
-                  <h3 className="font-semibold">Editar Perfil</h3>
-                  <p className="text-sm text-gray-600">
+                  <h3 className="font-semibold" style={{ color: '#38241D' }}>Editar Perfil</h3>
+                  <p className="text-sm" style={{ color: '#946354' }}>
                     Alterar informações pessoais
                   </p>
                 </div>
               </div>
-              <button
-                onClick={() => setShowEditModal(true)}
-                className="btn btn-outline"
+              <button 
+                onClick={() => setShowEditModal(true)} 
+                className="btn btn-outline transition-all hover:scale-105"
+                style={{ borderColor: '#936253', color: '#936253' }}
               >
                 Editar
               </button>
             </div>
 
-            {/* Become Creator */}
             {!user?.isCreator && (
-              <div className="flex items-center justify-between p-4 border rounded-lg">
+              <div 
+                className="flex items-center justify-between p-4 border rounded-lg transition-all hover:shadow-md hover:scale-105"
+                style={{ borderColor: 'rgba(147, 98, 83, 0.3)' }}
+              >
                 <div className="flex items-center gap-4">
-                  <div className="w-6 h-6 bg-orange-500 rounded flex items-center justify-center">
+                  <div className="w-6 h-6 rounded flex items-center justify-center" style={{ background: '#936253' }}>
                     <span className="text-white text-xs font-bold">C</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold">Tornar-se Criador</h3>
-                    <p className="text-sm text-gray-600">
+                    <h3 className="font-semibold" style={{ color: '#38241D' }}>Tornar-se Criador</h3>
+                    <p className="text-sm" style={{ color: '#946354' }}>
                       Crie e gerencie seus próprios eventos
                     </p>
                   </div>
                 </div>
-                <button
-                  onClick={handleBecomeCreator}
-                  className="btn btn-secondary"
+                <button 
+                  onClick={handleBecomeCreator} 
+                  className="btn btn-secondary transition-all hover:scale-105"
                 >
                   Ativar
                 </button>
               </div>
             )}
 
-            {/* Logout */}
-            <div className="flex items-center justify-between p-4 border rounded-lg">
+            <div 
+              className="flex items-center justify-between p-4 border rounded-lg transition-all hover:shadow-md hover:scale-105"
+              style={{ borderColor: 'rgba(147, 98, 83, 0.3)' }}
+            >
               <div className="flex items-center gap-4">
-                <LogOut size={24} className="text-orange-600" />
+                <LogOut size={24} style={{ color: '#936253' }} />
                 <div>
-                  <h3 className="font-semibold">Sair da Conta</h3>
-                  <p className="text-sm text-gray-600">
+                  <h3 className="font-semibold" style={{ color: '#38241D' }}>Sair da Conta</h3>
+                  <p className="text-sm" style={{ color: '#946354' }}>
                     Fazer logout da sua conta
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setShowLogoutModal(true)}
-                className="btn btn-outline text-orange-600 border-orange-600"
+                className="btn btn-outline transition-all hover:scale-105"
+                style={{ borderColor: '#936253', color: '#936253' }}
               >
                 Sair
               </button>
             </div>
 
-            {/* Delete Account */}
-            <div className="flex items-center justify-between p-4 border border-red-200 rounded-lg bg-red-50">
+            <div 
+              className="flex items-center justify-between p-4 border border-red-200 rounded-lg bg-red-50 transition-all hover:shadow-md hover:scale-105"
+            >
               <div className="flex items-center gap-4">
                 <Trash2 size={24} className="text-red-600" />
                 <div>
@@ -152,7 +168,7 @@ const Settings = () => {
               </div>
               <button
                 onClick={() => setShowDeleteModal(true)}
-                className="btn bg-red-600 text-white hover:bg-red-700"
+                className="btn bg-red-600 text-white hover:bg-red-700 transition-all hover:scale-105"
               >
                 Deletar
               </button>
@@ -161,15 +177,11 @@ const Settings = () => {
         </div>
       </div>
 
-      {/* Edit Profile Modal */}
-      <Modal
-        isOpen={showEditModal}
-        onClose={() => setShowEditModal(false)}
-        title="Editar Perfil"
-      >
+      {/* Modals */}
+      <Modal isOpen={showEditModal} onClose={() => setShowEditModal(false)} title="Editar Perfil">
         <form onSubmit={handleEditProfile} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Nome</label>
+            <label className="block text-sm font-medium mb-2" style={{ color: '#38241D' }}>Nome</label>
             <input
               type="text"
               value={editData.name}
@@ -179,7 +191,7 @@ const Settings = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Nome de usuário</label>
+            <label className="block text-sm font-medium mb-2" style={{ color: '#38241D' }}>Nome de usuário</label>
             <input
               type="text"
               value={editData.username}
@@ -189,7 +201,7 @@ const Settings = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">E-mail</label>
+            <label className="block text-sm font-medium mb-2" style={{ color: '#38241D' }}>E-mail</label>
             <input
               type="email"
               value={editData.email}
@@ -199,7 +211,7 @@ const Settings = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-2">Localização</label>
+            <label className="block text-sm font-medium mb-2" style={{ color: '#38241D' }}>Localização</label>
             <input
               type="text"
               value={editData.location}
@@ -209,56 +221,24 @@ const Settings = () => {
             />
           </div>
           <div className="flex gap-4 mt-6">
-            <button type="submit" className="btn btn-secondary flex-1">
-              Salvar
-            </button>
-            <button 
-              type="button"
-              onClick={() => setShowEditModal(false)}
-              className="btn btn-outline flex-1"
-            >
-              Cancelar
-            </button>
+            <button type="submit" className="btn btn-secondary flex-1">Salvar</button>
+            <button type="button" onClick={() => setShowEditModal(false)} className="btn btn-outline flex-1">Cancelar</button>
           </div>
         </form>
       </Modal>
 
-      {/* Logout Modal */}
-      <Modal
-        isOpen={showLogoutModal}
-        onClose={() => setShowLogoutModal(false)}
-        title="Confirmar saída"
-      >
+      <Modal isOpen={showLogoutModal} onClose={() => setShowLogoutModal(false)} title="Confirmar saída">
         <p className="mb-6">Tem certeza que deseja sair da sua conta?</p>
         <div className="flex gap-4">
-          <button 
-            onClick={handleLogout}
-            className="btn btn-secondary flex-1"
-          >
-            Sim, sair
-          </button>
-          <button 
-            onClick={() => setShowLogoutModal(false)}
-            className="btn btn-outline flex-1"
-          >
-            Cancelar
-          </button>
+          <button onClick={handleLogout} className="btn btn-secondary flex-1">Sim, sair</button>
+          <button onClick={() => setShowLogoutModal(false)} className="btn btn-outline flex-1">Cancelar</button>
         </div>
       </Modal>
 
-      {/* Delete Account Modal */}
-      <Modal
-        isOpen={showDeleteModal}
-        onClose={() => setShowDeleteModal(false)}
-        title="Deletar Conta"
-      >
+      <Modal isOpen={showDeleteModal} onClose={() => setShowDeleteModal(false)} title="Deletar Conta">
         <div className="space-y-4">
-          <p className="text-red-600 font-medium">
-            ⚠️ Esta ação é irreversível!
-          </p>
-          <p>
-            Todos os seus dados, favoritos e atividades serão permanentemente removidos.
-          </p>
+          <p className="text-red-600 font-medium">⚠️ Esta ação é irreversível!</p>
+          <p>Todos os seus dados, favoritos e atividades serão permanentemente removidos.</p>
           <div className="relative">
             <input
               type={showDeletePassword ? "text" : "password"}
@@ -276,18 +256,8 @@ const Settings = () => {
             </button>
           </div>
           <div className="flex gap-4 mt-6">
-            <button 
-              onClick={handleDeleteAccount}
-              className="btn bg-red-600 text-white hover:bg-red-700 flex-1"
-            >
-              Deletar Conta
-            </button>
-            <button 
-              onClick={() => setShowDeleteModal(false)}
-              className="btn btn-outline flex-1"
-            >
-              Cancelar
-            </button>
+            <button onClick={handleDeleteAccount} className="btn bg-red-600 text-white hover:bg-red-700 flex-1">Deletar Conta</button>
+            <button onClick={() => setShowDeleteModal(false)} className="btn btn-outline flex-1">Cancelar</button>
           </div>
         </div>
       </Modal>

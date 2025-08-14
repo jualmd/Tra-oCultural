@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Moon, Sun } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import Modal from './Modal';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
@@ -148,6 +151,21 @@ const Navbar = () => {
               >
                 Configurações
               </Link>
+            </li>
+            <li>
+              <button 
+                onClick={toggleTheme}
+                className="p-2 rounded-full transition-all hover:scale-110"
+                style={{ 
+                  background: 'rgba(56, 36, 29, 0.1)',
+                  border: 'none',
+                  color: '#38241D',
+                  cursor: 'pointer'
+                }}
+                title={theme === 'dark' ? 'Modo claro' : 'Modo escuro'}
+              >
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
             </li>
             <li>
               <button 

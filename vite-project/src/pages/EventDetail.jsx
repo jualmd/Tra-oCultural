@@ -1,148 +1,181 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Heart, Share2, Calendar, MapPin, Clock, Users } from "lucide-react";
-import Header from "../components/Header";
-import Button from "../components/Button";
+import { ArrowLeft, Heart, Share2, Calendar, MapPin, Clock, Users, Star } from "lucide-react";
+import Navbar from "../components/Navbar";
 
 const EventDetail = () => {
   const navigate = useNavigate();
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
-    <div className="min-h-screen bg-cultural-cream">
-      <Header showNavigation />
+    <div className="min-h-screen" style={{ paddingTop: '70px' }}>
+      <Navbar />
       
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="container mx-auto p-6 max-w-4xl">
         <button
           onClick={() => navigate(-1)}
-          className="flex items-center gap-2 hover:text-cultural-accent mb-6 transition-colors"
-          style={{ color: '#38241D' }}
+          className="flex items-center gap-2 mb-6 text-white bg-primary rounded-full px-4 py-2 transition-all hover:scale-105"
+          style={{ backgroundColor: '#936253' }}
         >
           <ArrowLeft size={20} />
           Voltar
         </button>
 
-        <div className="bg-white rounded-2xl shadow-cultural overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Event Image */}
-          <div className="relative h-80">
-            <div 
-              className="w-full h-full flex items-center justify-center text-white text-2xl"
-              style={{ backgroundColor: '#936253' }}
-            >
-              ACT: NEW EPISODE
-            </div>
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }} />
-            
-            {/* Action buttons */}
-            <div className="absolute top-4 right-4 flex gap-2">
-              <button
-                onClick={() => setIsFavorite(!isFavorite)}
-                className="p-3 rounded-full transition-colors"
-                style={{ backgroundColor: 'rgba(56, 36, 29, 0.5)' }}
+          <div className="lg:col-span-2">
+            <div className="relative rounded-2xl overflow-hidden mb-6">
+              <div 
+                className="w-full h-80 flex items-center justify-center text-white text-3xl font-bold"
+                style={{ background: 'linear-gradient(135deg, #936253, #38241D)' }}
               >
-                <Heart
-                  size={20}
-                  className={`${isFavorite ? 'text-red-500' : 'text-white'} transition-colors`}
-                  fill={isFavorite ? '#ef4444' : 'none'}
-                />
-              </button>
-              <button 
-                className="p-3 rounded-full transition-colors"
-                style={{ backgroundColor: 'rgba(56, 36, 29, 0.5)' }}
-              >
-                <Share2 size={20} className="text-white" />
-              </button>
+                FESTIVAL DE INVERNO
+              </div>
+              
+              <div className="absolute top-4 right-4 flex gap-2">
+                <button
+                  onClick={() => setIsFavorite(!isFavorite)}
+                  className="p-3 rounded-full transition-all hover:scale-110"
+                  style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+                >
+                  <Heart
+                    size={20}
+                    className={`${isFavorite ? 'text-red-500' : 'text-white'} transition-colors`}
+                    fill={isFavorite ? '#ef4444' : 'none'}
+                  />
+                </button>
+                <button 
+                  className="p-3 rounded-full transition-all hover:scale-110"
+                  style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
+                >
+                  <Share2 size={20} className="text-white" />
+                </button>
+              </div>
             </div>
 
-            {/* Event title overlay */}
-            <div className="absolute bottom-4 left-4 text-white">
-              <p className="text-sm opacity-90 mb-1">2024 & KANG DANIEL LATIN TOUR</p>
-              <h1 className="text-3xl font-bold mb-2">ACT:</h1>
-              <h2 className="text-2xl font-light">NEW EPISODE</h2>
+            {/* Event Description */}
+            <div className="card" style={{ maxWidth: 'none', background: 'rgba(255, 255, 255, 0.95)' }}>
+              <h1 className="text-3xl font-bold mb-4" style={{ color: '#38241D' }}>
+                Festival de Inverno de Campos do Jordão 2024
+              </h1>
+              
+              <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center gap-1">
+                  {[1,2,3,4,5].map((star) => (
+                    <Star key={star} size={16} className="text-yellow-400" fill="currentColor" />
+                  ))}
+                  <span className="ml-2 text-sm" style={{ color: '#946354' }}>4.8 (324 avaliações)</span>
+                </div>
+              </div>
+
+              <p className="text-lg leading-relaxed mb-6" style={{ color: '#38241D' }}>
+                O Festival de Inverno de Campos do Jordão é um dos mais importantes eventos de música clássica do Brasil. 
+                Durante três semanas, a cidade se transforma em um grande palco para apresentações de orquestras, 
+                solistas e grupos de câmara nacionais e internacionais.
+              </p>
+
+              <p className="leading-relaxed" style={{ color: '#946354' }}>
+                Este ano, o festival conta com a participação especial da Orquestra Sinfônica do Estado de São Paulo, 
+                regida pelo maestro Marin Alsop, e apresentações solo do pianista Nelson Freire. 
+                Uma experiência única para os amantes da música clássica.
+              </p>
             </div>
           </div>
 
-          {/* Event Details */}
-          <div className="p-6 space-y-6">
-            {/* Date and Time */}
-            <div className="flex items-start gap-4 p-4 text-white rounded-lg" style={{ backgroundColor: '#38241D' }}>
-              <div>
-                <p className="text-sm opacity-90">28 de Setembro de 2024 - Sábado às 20h30 (Início Carlos Henrique - NATAL)</p>
-                <p className="text-sm opacity-75 mt-1">Evento 48h mais tarde na Suíça (GMT+2)</p>
-              </div>
-            </div>
+          {/* Event Info Sidebar */}
+          <div className="space-y-6">
+            {/* Event Details Card */}
+            <div className="card" style={{ maxWidth: 'none', background: 'rgba(175, 137, 122, 0.95)' }}>
+              <h3 className="text-xl font-bold mb-4" style={{ color: '#38241D' }}>Detalhes do Evento</h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Calendar size={20} style={{ color: '#936253' }} />
+                  <div>
+                    <p className="font-medium" style={{ color: '#38241D' }}>Data</p>
+                    <p className="text-sm" style={{ color: '#946354' }}>15 de Julho, 2024</p>
+                    <p className="text-sm" style={{ color: '#946354' }}>Sábado</p>
+                  </div>
+                </div>
 
-            {/* Event Info */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-center gap-3">
-                <Calendar className="text-cultural-accent" size={20} />
-                <div>
-                  <p className="font-medium">Data</p>
-                  <p className="text-sm" style={{ color: 'rgba(0,0,0,0.6)' }}>28 de Setembro, 2024</p>
+                <div className="flex items-start gap-3">
+                  <Clock size={20} style={{ color: '#936253' }} />
+                  <div>
+                    <p className="font-medium" style={{ color: '#38241D' }}>Horário</p>
+                    <p className="text-sm" style={{ color: '#946354' }}>20:00 - 22:30</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <MapPin size={20} style={{ color: '#936253' }} />
+                  <div>
+                    <p className="font-medium" style={{ color: '#38241D' }}>Local</p>
+                    <p className="text-sm" style={{ color: '#946354' }}>Auditório Claudio Santoro</p>
+                    <p className="text-sm" style={{ color: '#946354' }}>Campos do Jordão, SP</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Users size={20} style={{ color: '#936253' }} />
+                  <div>
+                    <p className="font-medium" style={{ color: '#38241D' }}>Capacidade</p>
+                    <p className="text-sm" style={{ color: '#946354' }}>800 pessoas</p>
+                  </div>
                 </div>
               </div>
-
-              <div className="flex items-center gap-3">
-                <Clock className="text-cultural-accent" size={20} />
-                <div>
-                  <p className="font-medium">Horário</p>
-                  <p className="text-sm" style={{ color: 'rgba(0,0,0,0.6)' }}>20:30 - 23:00</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <MapPin className="text-cultural-accent" size={20} />
-                <div>
-                  <p className="font-medium">Local</p>
-                  <p className="text-sm" style={{ color: 'rgba(0,0,0,0.6)' }}>Allianz Parque, São Paulo</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <Users className="text-cultural-accent" size={20} />
-                <div>
-                  <p className="font-medium">Capacidade</p>
-                  <p className="text-sm" style={{ color: 'rgba(0,0,0,0.6)' }}>15.000 pessoas</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Description */}
-            <div>
-              <h3 className="text-lg font-semibold mb-3">Sobre o Evento</h3>
-              <p style={{ color: 'rgba(0,0,0,0.6)' }} className="leading-relaxed">
-                Considerado o retorno da turnê mundial "ACT: NEW EPISODE", o evento promete uma experiência 
-                única com tecnologia de ponta, cenografia inovadora e a energia inconfundível de Kang Daniel. 
-                Preparados para uma noite inesquecível de música e performance artística.
-              </p>
             </div>
 
             {/* Ticket Options */}
-            <div className="border-t pt-6">
-              <h3 className="text-lg font-semibold mb-4">Mais Detalhes</h3>
+            <div className="card" style={{ maxWidth: 'none', background: 'rgba(255, 255, 255, 0.95)' }}>
+              <h3 className="text-xl font-bold mb-4" style={{ color: '#38241D' }}>Ingressos</h3>
+              
               <div className="space-y-3">
                 <div className="flex justify-between items-center p-4 border rounded-lg">
                   <div>
-                    <p className="font-medium">VIP FRONT STAGE</p>
-                    <p className="text-sm" style={{ color: 'rgba(0,0,0,0.6)' }}>Inclui meet & greet</p>
+                    <p className="font-medium" style={{ color: '#38241D' }}>Plateia Premium</p>
+                    <p className="text-sm" style={{ color: '#946354' }}>Melhores lugares</p>
                   </div>
-                  <p className="font-bold text-cultural-accent">R$ 450,00</p>
+                  <p className="font-bold text-lg" style={{ color: '#936253' }}>R$ 120,00</p>
                 </div>
                 
                 <div className="flex justify-between items-center p-4 border rounded-lg">
                   <div>
-                    <p className="font-medium">PISTA PREMIUM</p>
-                    <p className="text-sm" style={{ color: 'rgba(0,0,0,0.6)' }}>Área VIP com bar</p>
+                    <p className="font-medium" style={{ color: '#38241D' }}>Plateia</p>
+                    <p className="text-sm" style={{ color: '#946354' }}>Vista padrão</p>
                   </div>
-                  <p className="font-bold text-cultural-accent">R$ 280,00</p>
+                  <p className="font-bold text-lg" style={{ color: '#936253' }}>R$ 80,00</p>
                 </div>
 
                 <div className="flex justify-between items-center p-4 border rounded-lg">
                   <div>
-                    <p className="font-medium">ARQUIBANCADA</p>
-                    <p className="text-sm" style={{ color: 'rgba(0,0,0,0.6)' }}>Vista privilegiada</p>
+                    <p className="font-medium" style={{ color: '#38241D' }}>Balcão</p>
+                    <p className="text-sm" style={{ color: '#946354' }}>Vista elevada</p>
                   </div>
-                  <p className="font-bold text-cultural-accent">R$ 120,00</p>
+                  <p className="font-bold text-lg" style={{ color: '#936253' }}>R$ 50,00</p>
+                </div>
+              </div>
+
+              <button 
+                className="btn btn-primary w-full mt-6"
+                style={{ backgroundColor: '#936253' }}
+              >
+                Comprar Ingressos
+              </button>
+            </div>
+
+            {/* Organizer Info */}
+            <div className="card" style={{ maxWidth: 'none', background: 'rgba(175, 137, 122, 0.95)' }}>
+              <h3 className="text-lg font-bold mb-3" style={{ color: '#38241D' }}>Organizador</h3>
+              <div className="flex items-center gap-3">
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
+                  style={{ background: '#936253' }}
+                >
+                  FI
+                </div>
+                <div>
+                  <p className="font-medium" style={{ color: '#38241D' }}>Festival de Inverno</p>
+                  <p className="text-sm" style={{ color: '#946354' }}>Organizador verificado</p>
                 </div>
               </div>
             </div>

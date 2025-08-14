@@ -1,38 +1,51 @@
 import { useState } from "react";
-import Header from "../components/Header";
+import Navbar from "../components/Navbar";
 import EventCard from "../components/EventCard";
 import Button from "../components/Button";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "../components/Tabs";
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([
     {
       id: 1,
-      title: "CHICO&MESTRE",
-      subtitle: "Show Musical",
-      date: "15 Nov 2024",
-      location: "Teatro Municipal"
+      title: "Festival de Inverno de Campos do Jordão",
+      subtitle: "Música Clássica",
+      date: "15 Jul 2024",
+      location: "Auditório Claudio Santoro - SP"
     },
     {
       id: 2,
-      title: "QR PARA AMAR SÓ BAGUNÇA",
-      subtitle: "Comédia Teatral",
-      date: "22 Nov 2024",
-      location: "Teatro do Riso"
+      title: "Espetáculo: O Rei Leão",
+      subtitle: "Musical Teatral",
+      date: "22 Jul 2024",
+      location: "Teatro Renault - SP"
     },
     {
       id: 3,
-      title: "Show de Otayam Tamabitex",
-      subtitle: "Música em São Paulo",
-      date: "30 Nov 2024",
-      location: "Espaço das Américas"
+      title: "Exposição: Arte Contemporânea Brasileira",
+      subtitle: "Artes Visuais",
+      date: "30 Jul 2024",
+      location: "Pinacoteca do Estado - SP"
     },
     {
       id: 4,
-      title: "KANG DANIEL EM SÃO PAULO",
-      subtitle: "ACT: NEW EPISODE",
-      date: "28 Set 2024",
-      location: "Allianz Parque"
+      title: "Show: Gilberto Gil",
+      subtitle: "MPB",
+      date: "05 Ago 2024",
+      location: "Espaço das Américas - SP"
+    },
+    {
+      id: 5,
+      title: "Peça: Hamlet",
+      subtitle: "Teatro Clássico",
+      date: "12 Ago 2024",
+      location: "Teatro Municipal - SP"
+    },
+    {
+      id: 6,
+      title: "Festival de Jazz",
+      subtitle: "Música Instrumental",
+      date: "18 Ago 2024",
+      location: "Blue Note São Paulo - SP"
     }
   ]);
 
@@ -41,99 +54,47 @@ const Favorites = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cultural-cream">
-      <Header showNavigation />
+    <div className="min-h-screen" style={{ paddingTop: '70px' }}>
+      <Navbar />
       
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="container mx-auto p-6 max-w-6xl">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2" style={{ color: '#38241D' }}>Favoritos</h1>
-          <p style={{ color: 'rgba(56, 36, 29, 0.7)' }}>Seus eventos culturais salvos</p>
+          <p style={{ color: '#946354' }}>Seus eventos culturais salvos</p>
         </div>
 
-        <Tabs defaultValue="eventos" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="eventos">
-              Eventos
-            </TabsTrigger>
-            <TabsTrigger value="artistas">
-              Artistas
-            </TabsTrigger>
-            <TabsTrigger value="locais">
-              Locais
-            </TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="eventos">
-            {favorites.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {favorites.map((event) => (
-                  <EventCard
-                    key={event.id}
-                    title={event.title}
-                    subtitle={event.subtitle}
-                    date={event.date}
-                    location={event.location}
-                    isFavorite={true}
-                    onFavoriteToggle={() => removeFavorite(event.id)}
-                    size="medium"
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-16">
-                <p className="text-lg mb-4" style={{ color: 'rgba(56, 36, 29, 0.5)' }}>
-                  Nenhum evento favoritado ainda
-                </p>
-                <Button 
-                  onClick={() => window.location.href = '/dashboard'}
-                  style={{ backgroundColor: '#38241D', color: 'white' }}
-                >
-                  Explorar Eventos
-                </Button>
-              </div>
-            )}
-          </TabsContent>
-
-          <TabsContent value="artistas">
-            <div className="text-center py-16">
-              <p className="text-lg mb-4" style={{ color: 'rgba(56, 36, 29, 0.5)' }}>
-                Artistas favoritos aparecerão aqui
-              </p>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="locais">
-            <div className="text-center py-16">
-              <p className="text-lg mb-4" style={{ color: 'rgba(56, 36, 29, 0.5)' }}>
-                Locais favoritos aparecerão aqui
-              </p>
-            </div>
-          </TabsContent>
-        </Tabs>
-
-        {/* Action buttons flutuantes */}
-        <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
-          <Button 
-            className="rounded-full px-6"
-            style={{ backgroundColor: '#936253', color: 'white' }}
-          >
-            Ver favoritos
-          </Button>
-          <Button 
-            variant="outline"
-            className="rounded-full px-6"
-            style={{ borderColor: '#38241D', color: '#38241D' }}
-          >
-            Mais feedbacks
-          </Button>
-          <Button 
-            variant="outline"
-            className="rounded-full px-6"
-            style={{ borderColor: '#38241D', color: '#38241D' }}
-          >
-            Sair ou deletar conta
-          </Button>
-        </div>
+        {favorites.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {favorites.map((event) => (
+              <EventCard
+                key={event.id}
+                title={event.title}
+                subtitle={event.subtitle}
+                date={event.date}
+                location={event.location}
+                isFavorite={true}
+                onFavoriteToggle={() => removeFavorite(event.id)}
+                size="medium"
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="card text-center py-16" style={{ maxWidth: 'none', margin: '0 auto' }}>
+            <div className="text-6xl mb-4">💔</div>
+            <h3 className="text-xl font-bold mb-2" style={{ color: '#38241D' }}>
+              Nenhum evento favoritado ainda
+            </h3>
+            <p className="mb-4" style={{ color: '#946354' }}>
+              Explore eventos e adicione aos seus favoritos
+            </p>
+            <Button 
+              onClick={() => window.location.href = '/dashboard'}
+              className="btn btn-primary"
+            >
+              Explorar Eventos
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
