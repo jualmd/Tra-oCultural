@@ -22,179 +22,173 @@ const Navbar = () => {
   return (
     <>
       <nav 
-        className="navbar"
         style={{
           background: 'rgba(175, 137, 122, 0.98)',
           backdropFilter: 'blur(20px)',
           borderBottom: '1px solid rgba(147, 98, 83, 0.2)',
-          boxShadow: '0 2px 20px rgba(56, 36, 29, 0.1)'
+          boxShadow: '0 2px 20px rgba(56, 36, 29, 0.1)',
+          height: '60px',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+          fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
         }}
       >
-        <div className="container">
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          height: '100%',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 24px'
+        }}>
           <Link 
-            to="/dashboard" 
-            className="logo"
+            to="/dashboard"
             style={{
               fontSize: '1.75rem',
-              fontWeight: '800',
+              fontWeight: '700',
               color: '#38241D',
               textDecoration: 'none',
-              letterSpacing: '0.5px'
+              letterSpacing: '0.5px',
+              display: 'flex',
+              alignItems: 'center',
+              height: '100%'
             }}
           >
             TRAÇO CULTURAL
           </Link>
 
           {/* Desktop Menu */}
-          <ul className="nav-links">
-            <li>
-              <Link 
-                to="/dashboard"
-                style={{
-                  color: '#38241D',
-                  textDecoration: 'none',
-                  fontWeight: '600',
-                  fontSize: '1rem',
-                  padding: '0.75rem 1.25rem',
-                  borderRadius: '12px',
-                  transition: 'all 0.3s ease',
-                  position: 'relative'
-                }}
-                onMouseOver={(e) => {
-                  e.target.style.background = 'rgba(56, 36, 29, 0.08)';
-                  e.target.style.color = '#936253';
-                  e.target.style.transform = 'translateY(-1px)';
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#38241D';
-                  e.target.style.transform = 'translateY(0)';
-                }}
-              >
-                Início
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/favorites"
-                style={{
-                  color: '#38241D',
-                  textDecoration: 'none',
-                  fontWeight: '600',
-                  fontSize: '1rem',
-                  padding: '0.75rem 1.25rem',
-                  borderRadius: '12px',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.target.style.background = 'rgba(56, 36, 29, 0.08)';
-                  e.target.style.color = '#936253';
-                  e.target.style.transform = 'translateY(-1px)';
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#38241D';
-                  e.target.style.transform = 'translateY(0)';
-                }}
-              >
-                Favoritos
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/profile"
-                style={{
-                  color: '#38241D',
-                  textDecoration: 'none',
-                  fontWeight: '600',
-                  fontSize: '1rem',
-                  padding: '0.75rem 1.25rem',
-                  borderRadius: '12px',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.target.style.background = 'rgba(56, 36, 29, 0.08)';
-                  e.target.style.color = '#936253';
-                  e.target.style.transform = 'translateY(-1px)';
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#38241D';
-                  e.target.style.transform = 'translateY(0)';
-                }}
-              >
-                Perfil
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/settings"
-                style={{
-                  color: '#38241D',
-                  textDecoration: 'none',
-                  fontWeight: '600',
-                  fontSize: '1rem',
-                  padding: '0.75rem 1.25rem',
-                  borderRadius: '12px',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseOver={(e) => {
-                  e.target.style.background = 'rgba(56, 36, 29, 0.08)';
-                  e.target.style.color = '#936253';
-                  e.target.style.transform = 'translateY(-1px)';
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#38241D';
-                  e.target.style.transform = 'translateY(0)';
-                }}
-              >
-                Configurações
-              </Link>
-            </li>
-            <li>
-              <button 
-                onClick={toggleTheme}
-                className="p-2 rounded-full transition-all hover:scale-110"
-                style={{ 
-                  background: 'rgba(56, 36, 29, 0.1)',
-                  border: 'none',
-                  color: '#38241D',
-                  cursor: 'pointer'
-                }}
-                title={theme === 'dark' ? 'Modo claro' : 'Modo escuro'}
-              >
-                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-            </li>
-            <li>
-              <button 
-                onClick={() => setShowLogoutModal(true)}
-                style={{ 
-                  background: 'linear-gradient(135deg, #936253, #946354)',
-                  border: 'none', 
-                  color: 'white',
-                  cursor: 'pointer',
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '12px',
-                  transition: 'all 0.3s ease',
-                  fontWeight: '600',
-                  fontSize: '1rem',
-                  boxShadow: '0 2px 8px rgba(147, 98, 83, 0.3)'
-                }}
-                onMouseOver={(e) => {
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 4px 12px rgba(147, 98, 83, 0.4)';
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 2px 8px rgba(147, 98, 83, 0.3)';
-                }}
-              >
-                Sair
-              </button>
-            </li>
-          </ul>
+          <div style={{ display: 'flex', alignItems: 'center', height: '100%', gap: '24px', marginLeft: '32px' }}>
+            <Link 
+              to="/dashboard"
+              style={{
+                color: '#38241D',
+                textDecoration: 'none',
+                fontWeight: '500',
+                fontSize: '1rem',
+                padding: '0 16px',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseOver={(e) => e.target.style.color = '#936253'}
+              onMouseOut={(e) => e.target.style.color = '#38241D'}
+            >
+              Início
+            </Link>
+            
+            <Link 
+              to="/favorites"
+              style={{
+                color: '#38241D',
+                textDecoration: 'none',
+                fontWeight: '500',
+                fontSize: '1rem',
+                padding: '0 16px',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseOver={(e) => e.target.style.color = '#936253'}
+              onMouseOut={(e) => e.target.style.color = '#38241D'}
+            >
+              Favoritos
+            </Link>
+            
+            <Link 
+              to="/profile"
+              style={{
+                color: '#38241D',
+                textDecoration: 'none',
+                fontWeight: '500',
+                fontSize: '1rem',
+                padding: '0 16px',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseOver={(e) => e.target.style.color = '#936253'}
+              onMouseOut={(e) => e.target.style.color = '#38241D'}
+            >
+              Perfil
+            </Link>
+            
+            <Link 
+              to="/settings"
+              style={{
+                color: '#38241D',
+                textDecoration: 'none',
+                fontWeight: '500',
+                fontSize: '1rem',
+                padding: '0 16px',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseOver={(e) => e.target.style.color = '#936253'}
+              onMouseOut={(e) => e.target.style.color = '#38241D'}
+            >
+              Configurações
+            </Link>
+            
+            <button 
+              onClick={toggleTheme}
+              style={{ 
+                background: 'none',
+                border: 'none',
+                color: theme === 'dark' ? '#AF897A' : '#38241D',
+                cursor: 'pointer',
+                padding: 0,
+                height: '24px',
+                width: '24px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'color 0.2s ease'
+              }}
+              onMouseOver={(e) => {
+                const currentColor = theme === 'dark' ? '#AF897A' : '#38241D';
+                const lighterColor = theme === 'dark' ? '#C4A691' : '#4A2F23';
+                e.target.style.color = lighterColor;
+              }}
+              onMouseOut={(e) => {
+                e.target.style.color = theme === 'dark' ? '#AF897A' : '#38241D';
+              }}
+              title={theme === 'dark' ? 'Modo claro' : 'Modo escuro'}
+            >
+              {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+            </button>
+            
+            <button 
+              onClick={() => setShowLogoutModal(true)}
+              style={{ 
+                background: 'linear-gradient(135deg, #936253, #946354)',
+                border: 'none', 
+                color: 'white',
+                cursor: 'pointer',
+                padding: '0 16px',
+                borderRadius: '6px',
+                transition: 'all 0.2s ease',
+                fontWeight: '500',
+                fontSize: '1rem',
+                height: '36px',
+                display: 'flex',
+                alignItems: 'center'
+              }}
+              onMouseOver={(e) => e.target.style.opacity = '0.9'}
+              onMouseOut={(e) => e.target.style.opacity = '1'}
+            >
+              Sair
+            </button>
+          </div>
         </div>
       </nav>
 

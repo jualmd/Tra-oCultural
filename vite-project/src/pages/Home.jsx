@@ -16,37 +16,30 @@ const Home = () => {
     <div className="min-h-screen relative overflow-hidden">
       {/* Main content */}
       <div className="relative z-10 container mx-auto px-8" style={{ marginTop: '8rem' }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="text-white space-y-8 fade-in">
-            <h1 className="leading-tight" style={{ fontSize: '10rem', fontWeight: '900' }}>
-              <span className="font-bonello">E aí?</span>
+        <div className="flex items-center gap-8">
+          <div className="text-white space-y-6 fade-in" style={{ flex: '0 0 40%' }}>
+            <h1 className="leading-none" style={{ fontSize: '8rem', fontFamily: 'Arial Black, sans-serif', fontWeight: '900' }}>
+              E aí?
             </h1>
-            <h2 className="leading-relaxed" style={{ fontSize: '4.5rem', fontWeight: '800' }}>
-              <span className="font-londona">Para onde<br />vamos hoje?</span>
+            <h2 style={{ fontSize: '4rem', fontFamily: 'Verdana, sans-serif', fontWeight: '600', lineHeight: '0.8' }}>
+              Para onde<br />vamos hoje?
             </h2>
             
             <button
               onClick={() => navigate('/login')}
-              className="btn btn-primary text-xl px-12 py-4 mt-8"
+              className="btn btn-primary text-lg px-8 py-3 mt-6"
             >
               Entrar ou Cadastrar-se
             </button>
           </div>
 
-          {/* Image placeholder - LINHA 40 */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              <div 
-                className="w-80 h-96 rounded-3xl flex items-center justify-center text-white text-lg font-light bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/20"
-              >
-                {/* Adicione sua imagem aqui na linha 40 */}
-                <p className="text-center opacity-70">
-                  Adicionar imagem<br />
-                  grande aqui<br />
-                  (linha 40)
-                </p>
-              </div>
-            </div>
+          {/* Image */}
+          <div style={{ flex: '0 0 60%' }}>
+            <img 
+              src="/images/CRISTORD.png" 
+              alt="Cristo Redentor"
+              className="w-full h-[1000px] object-cover rounded-3xl"
+            />
           </div>
         </div>
       </div>
