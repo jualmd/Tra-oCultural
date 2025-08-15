@@ -133,7 +133,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ paddingTop: '70px' }}>
+    <div className="min-h-screen" style={{ paddingTop: '60px', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
       <Navbar />
       
       <div className="container mx-auto p-6">
@@ -141,7 +141,10 @@ const Dashboard = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="mb-2" style={{ color: '#38241D', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+              <h1 className="mb-2" style={{ 
+                color: '#38241D', 
+                fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' 
+              }}>
                 <span style={{ fontWeight: '700', fontSize: '3rem' }}>E aí, </span>
                 <span style={{ fontWeight: '700', fontSize: '2.5rem' }}>para onde vamos?</span>
               </h1>
@@ -150,15 +153,22 @@ const Dashboard = () => {
             <div className="relative">
               <button
                 onClick={() => setShowLocationDropdown(!showLocationDropdown)}
-                className="inline-flex items-center gap-2 h-10 px-4 transition-all hover:shadow active:scale-98 focus:outline-none focus:ring-2"
                 style={{ 
                   background: 'white',
                   color: '#38241D',
                   borderRadius: '9999px',
                   border: '1px solid rgba(56, 36, 29, 0.15)',
                   boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-                  focusRingColor: '#38241D'
+                  height: '40px',
+                  padding: '0 16px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
                 }}
+                onMouseOver={(e) => e.target.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)'}
+                onMouseOut={(e) => e.target.style.boxShadow = '0 2px 4px rgba(0,0,0,0.05)'}
               >
                 <MapPin size={16} style={{ opacity: '0.9' }} />
                 <span className="font-medium">São Paulo, SP</span>
@@ -183,15 +193,16 @@ const Dashboard = () => {
           </div>
 
           {/* Search Bar */}
-          <div className="mb-8 flex flex-col md:flex-row items-center gap-2 justify-center px-4 md:px-0" style={{ fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+          <div className="mb-8 flex items-center justify-center gap-6 px-4 md:px-0">
             <div 
-              className="flex items-center shadow-lg w-full md:w-3/5"
+              className="flex items-center shadow-lg"
               style={{
                 background: 'linear-gradient(90deg, #AF897A, #936253)',
                 borderRadius: '12px',
                 height: '44px',
                 paddingLeft: '12px',
-                paddingRight: '12px'
+                paddingRight: '12px',
+                width: '680px'
               }}
             >
               <Search className="shrink-0 text-white opacity-80" size={16} style={{ marginRight: '12px' }} />
@@ -200,31 +211,34 @@ const Dashboard = () => {
                 placeholder="Buscar eventos, artistas, locais..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="flex-1 bg-transparent text-white focus:outline-none"
                 style={{ 
+                  flex: 1,
+                  background: 'transparent',
+                  border: 'none',
+                  outline: 'none',
+                  color: 'rgba(255, 255, 255, 0.9)',
                   fontSize: '14px',
                   fontWeight: '400',
-                  fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif',
-                  color: 'white'
+                  fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
                 }}
+                className="search-input"
               />
             </div>
             
             <button 
               onClick={() => setShowFilters(!showFilters)}
-              className="flex items-center gap-2 px-4 font-medium transition-all hover:brightness-110"
+              className="flex items-center justify-center transition-all hover:brightness-110 shrink-0"
               style={{
                 background: '#51382e',
                 color: 'white',
                 borderRadius: '12px',
                 height: '44px',
-                border: 'none',
-                marginLeft: '8px',
-                fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
+                width: '44px',
+                border: 'none'
               }}
+              title="Filtros"
             >
-              <Filter size={16} />
-              Filtros
+              <Filter size={18} />
             </button>
           </div>
 
@@ -276,88 +290,100 @@ const Dashboard = () => {
         </div>
 
         {/* Local Events */}
-        <section className="mb-12">
-          <div className="mb-4">
+        <section className="mb-16">
+          <div className="mb-6">
             <h2 style={{ 
               color: 'white', 
               fontSize: '24px',
               fontWeight: '700',
               marginBottom: '16px',
-              fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
+              fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif',
+              textAlign: 'left'
             }}>
               Eventos em São Paulo, SP
             </h2>
             <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', width: '100%' }}></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ gap: '24px', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+          <div className="flex overflow-x-auto pb-4" style={{ gap: '24px' }}>
             {featuredEvents.map((event) => (
               <div
                 key={event.id}
-                className="bg-white overflow-hidden transition-all hover:scale-102 cursor-pointer flex flex-col"
+                className="bg-white overflow-hidden transition-all hover:scale-105 cursor-pointer flex flex-col"
                 style={{ 
-                  width: '100%',
-                  maxWidth: '260px',
-                  height: '340px',
-                  borderRadius: '12px',
-                  boxShadow: '0px 4px 10px rgba(0,0,0,0.15)'
+                  width: '280px',
+                  height: '380px',
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                 }}
                 onClick={() => navigate(`/event/${event.id}`)}
               >
-                {/* Image Area */}
                 <div 
-                  className="w-full flex items-center justify-center text-gray-500 text-sm"
+                  className="flex items-center justify-center text-gray-500 text-sm"
                   style={{ 
+                    width: '100%',
                     height: '160px',
                     backgroundColor: '#F3F3F3',
-                    borderRadius: '12px 12px 0 0'
+                    borderRadius: '16px 16px 0 0',
+                    flexShrink: 0
                   }}
                 >
                   Espaço para foto
                 </div>
                 
-                {/* Event Info */}
                 <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                     <h3 style={{ 
                       color: '#38241D', 
                       fontSize: '16px', 
-                      fontWeight: '600',
-                      lineHeight: '1.2',
-                      marginBottom: '4px',
-                      fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
+                      fontWeight: '700',
+                      lineHeight: '1.3',
+                      marginBottom: '6px',
+                      fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
                     }}>
                       {event.title}
                     </h3>
                     <p style={{ 
                       color: '#666', 
-                      fontSize: '12px',
+                      fontSize: '13px',
                       fontWeight: '400',
-                      marginBottom: '8px',
+                      marginBottom: '12px',
                       fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
                     }}>
                       {event.subtitle}
                     </p>
-                    <div className="flex items-center gap-2" style={{ color: '#666', fontSize: '12px', marginBottom: '4px' }}>
-                      <span>📍</span>
-                      <span>{event.location}</span>
+                    <div className="flex items-center gap-2" style={{ color: '#51382e', fontSize: '12px', marginBottom: '6px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+                      <span style={{ color: '#936253' }}>📍</span>
+                      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{event.location}</span>
                     </div>
-                    <div className="flex items-center gap-2" style={{ color: '#666', fontSize: '12px' }}>
-                      <span>📅</span>
+                    <div className="flex items-center gap-2" style={{ color: '#51382e', fontSize: '12px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+                      <span style={{ color: '#936253' }}>📅</span>
                       <span>{event.date}</span>
                     </div>
                   </div>
                   
                   <button 
-                    className="w-full text-white transition-all hover:brightness-105"
+                    className="text-white transition-all hover:brightness-110"
                     style={{ 
                       background: '#936253',
-                      borderRadius: '0 0 12px 12px',
+                      borderRadius: '12px',
                       border: 'none',
                       padding: '12px 0',
                       marginTop: '16px',
-                      fontWeight: '500',
-                      fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
+                      fontWeight: '600',
+                      fontSize: '14px',
+                      fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif',
+                      width: '90%',
+                      alignSelf: 'center',
+                      height: '44px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -374,87 +400,99 @@ const Dashboard = () => {
 
         {/* All Events */}
         <section>
-          <div className="mb-4">
+          <div className="mb-6">
             <h2 style={{ 
               color: 'white', 
               fontSize: '24px',
               fontWeight: '700',
               marginBottom: '16px',
-              fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
+              fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif',
+              textAlign: 'left'
             }}>
               Todos os eventos
             </h2>
             <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', width: '100%' }}></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4" style={{ gap: '24px', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+          <div className="flex overflow-x-auto pb-4" style={{ gap: '24px' }}>
             {filteredEvents.map((event) => (
               <div
                 key={event.id}
-                className="bg-white overflow-hidden transition-all hover:scale-102 cursor-pointer flex flex-col"
+                className="bg-white overflow-hidden transition-all hover:scale-105 cursor-pointer flex flex-col"
                 style={{ 
-                  width: '100%',
-                  maxWidth: '260px',
-                  height: '340px',
-                  borderRadius: '12px',
-                  boxShadow: '0px 4px 10px rgba(0,0,0,0.15)'
+                  width: '280px',
+                  height: '380px',
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                 }}
                 onClick={() => navigate(`/event/${event.id}`)}
               >
-                {/* Image Area */}
                 <div 
-                  className="w-full flex items-center justify-center text-gray-500 text-sm"
+                  className="flex items-center justify-center text-gray-500 text-sm"
                   style={{ 
+                    width: '100%',
                     height: '160px',
                     backgroundColor: '#F3F3F3',
-                    borderRadius: '12px 12px 0 0'
+                    borderRadius: '16px 16px 0 0',
+                    flexShrink: 0
                   }}
                 >
                   Espaço para foto
                 </div>
                 
-                {/* Event Info */}
                 <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                     <h3 style={{ 
                       color: '#38241D', 
                       fontSize: '16px', 
-                      fontWeight: '600',
-                      lineHeight: '1.2',
-                      marginBottom: '4px',
-                      fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
+                      fontWeight: '700',
+                      lineHeight: '1.3',
+                      marginBottom: '6px',
+                      fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
                     }}>
                       {event.title}
                     </h3>
                     <p style={{ 
                       color: '#666', 
-                      fontSize: '12px',
+                      fontSize: '13px',
                       fontWeight: '400',
-                      marginBottom: '8px',
+                      marginBottom: '12px',
                       fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
                     }}>
                       {event.subtitle}
                     </p>
-                    <div className="flex items-center gap-2" style={{ color: '#666', fontSize: '12px', marginBottom: '4px' }}>
-                      <span>📍</span>
-                      <span>{event.location}</span>
+                    <div className="flex items-center gap-2" style={{ color: '#51382e', fontSize: '12px', marginBottom: '6px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+                      <span style={{ color: '#936253' }}>📍</span>
+                      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{event.location}</span>
                     </div>
-                    <div className="flex items-center gap-2" style={{ color: '#666', fontSize: '12px' }}>
-                      <span>📅</span>
+                    <div className="flex items-center gap-2" style={{ color: '#51382e', fontSize: '12px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+                      <span style={{ color: '#936253' }}>📅</span>
                       <span>{event.date}</span>
                     </div>
                   </div>
                   
                   <button 
-                    className="w-full text-white transition-all hover:brightness-105"
+                    className="text-white transition-all hover:brightness-110"
                     style={{ 
                       background: '#936253',
-                      borderRadius: '0 0 12px 12px',
+                      borderRadius: '12px',
                       border: 'none',
                       padding: '12px 0',
                       marginTop: '16px',
-                      fontWeight: '500',
-                      fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
+                      fontWeight: '600',
+                      fontSize: '14px',
+                      fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif',
+                      width: '90%',
+                      alignSelf: 'center',
+                      height: '44px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
                     }}
                     onClick={(e) => {
                       e.stopPropagation();

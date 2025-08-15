@@ -23,15 +23,15 @@ const Navbar = () => {
     <>
       <nav 
         style={{
-          background: 'rgba(175, 137, 122, 0.98)',
-          backdropFilter: 'blur(20px)',
-          borderBottom: '1px solid rgba(147, 98, 83, 0.2)',
-          boxShadow: '0 2px 20px rgba(56, 36, 29, 0.1)',
-          height: '60px',
           position: 'fixed',
           top: 0,
           left: 0,
           right: 0,
+          height: '60px',
+          background: 'rgba(175, 137, 122, 0.98)',
+          backdropFilter: 'blur(20px)',
+          borderBottom: '1px solid rgba(147, 98, 83, 0.2)',
+          boxShadow: '0 2px 20px rgba(56, 36, 29, 0.1)',
           zIndex: 1000,
           fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif'
         }}
@@ -61,8 +61,13 @@ const Navbar = () => {
             TRAÇO CULTURAL
           </Link>
 
-          {/* Desktop Menu */}
-          <div style={{ display: 'flex', alignItems: 'center', height: '100%', gap: '24px', marginLeft: '32px' }}>
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            height: '100%', 
+            gap: '24px', 
+            marginLeft: '32px' 
+          }}>
             <Link 
               to="/dashboard"
               style={{
@@ -155,7 +160,6 @@ const Navbar = () => {
                 transition: 'color 0.2s ease'
               }}
               onMouseOver={(e) => {
-                const currentColor = theme === 'dark' ? '#AF897A' : '#38241D';
                 const lighterColor = theme === 'dark' ? '#C4A691' : '#4A2F23';
                 e.target.style.color = lighterColor;
               }}
@@ -176,7 +180,7 @@ const Navbar = () => {
                 cursor: 'pointer',
                 padding: '0 16px',
                 borderRadius: '6px',
-                transition: 'all 0.2s ease',
+                transition: 'opacity 0.2s ease',
                 fontWeight: '500',
                 fontSize: '1rem',
                 height: '36px',
@@ -192,7 +196,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Logout Modal */}
       <Modal
         isOpen={showLogoutModal}
         onClose={() => setShowLogoutModal(false)}

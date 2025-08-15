@@ -646,6 +646,22 @@ body::after {
   }
 }
 
+/* Search Input Placeholder */
+.search-input::placeholder {
+  color: #38241D !important;
+  opacity: 0.8;
+}
+
+/* Hide scrollbar for horizontal event cards */
+.flex.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+.flex.overflow-x-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .container {
