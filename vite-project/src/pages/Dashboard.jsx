@@ -349,7 +349,7 @@ const Dashboard = () => {
                       {event.title}
                     </h3>
                     <p style={{ 
-                      color: '#666', 
+                      color: '#e0c9c2', 
                       fontSize: '13px',
                       fontWeight: '400',
                       marginBottom: '12px',
@@ -357,11 +357,11 @@ const Dashboard = () => {
                     }}>
                       {event.subtitle}
                     </p>
-                    <div className="flex items-center gap-2" style={{ color: '#51382e', fontSize: '12px', marginBottom: '6px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+                    <div className="flex items-center gap-2" style={{ color: '#3c261e', fontSize: '12px', marginBottom: '6px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
                       <span style={{ color: '#936253' }}>📍</span>
                       <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{event.location}</span>
                     </div>
-                    <div className="flex items-center gap-2" style={{ color: '#51382e', fontSize: '12px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+                    <div className="flex items-center gap-2" style={{ color: '#3c261e', fontSize: '12px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
                       <span style={{ color: '#936253' }}>📅</span>
                       <span>{event.date}</span>
                     </div>
@@ -458,7 +458,7 @@ const Dashboard = () => {
                       {event.title}
                     </h3>
                     <p style={{ 
-                      color: '#666', 
+                      color: '#e0c9c2', 
                       fontSize: '13px',
                       fontWeight: '400',
                       marginBottom: '12px',
@@ -466,11 +466,11 @@ const Dashboard = () => {
                     }}>
                       {event.subtitle}
                     </p>
-                    <div className="flex items-center gap-2" style={{ color: '#51382e', fontSize: '12px', marginBottom: '6px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+                    <div className="flex items-center gap-2" style={{ color: '#3c261e', fontSize: '12px', marginBottom: '6px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
                       <span style={{ color: '#936253' }}>📍</span>
                       <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{event.location}</span>
                     </div>
-                    <div className="flex items-center gap-2" style={{ color: '#51382e', fontSize: '12px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
+                    <div className="flex items-center gap-2" style={{ color: '#3c261e', fontSize: '12px', fontWeight: '500', fontFamily: 'Inter, Roboto, "Nunito Sans", sans-serif' }}>
                       <span style={{ color: '#936253' }}>📅</span>
                       <span>{event.date}</span>
                     </div>

@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import EventDetail from './pages/EventDetail'
+import EventDetails from './pages/EventDetails'
 import Favorites from './pages/Favorites'
 import Profile from './pages/Profile'
 import Settings from './pages/Settings'
@@ -57,6 +58,7 @@ function App() {
       {/* Rotas protegidas */}
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/event-detail" element={<ProtectedRoute><EventDetail /></ProtectedRoute>} />
+      <Route path="/event/:id" element={<ProtectedRoute><EventDetails /></ProtectedRoute>} />
       <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
